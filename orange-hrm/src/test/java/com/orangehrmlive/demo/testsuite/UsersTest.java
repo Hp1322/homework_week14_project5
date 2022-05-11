@@ -24,8 +24,8 @@ public class UsersTest extends TestBase {
         viewSystemUsersPage = new ViewSystemUsersPage();
     }
 
-    @Test(priority = 0,groups = {"sanity","smoke","regression"})
-    public void adminShouldAddUserSuccessFully() {
+    @Test(priority = 0, groups = {"sanity", "smoke", "regression"})
+    public void adminShouldAddUserSuccessFully() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         loginPage.enterUseName("Admin");
         loginPage.enterPassword("admin123");
@@ -41,11 +41,12 @@ public class UsersTest extends TestBase {
         addUserPage.enterPasswordField("Pandey@0789");
         addUserPage.enterConfirmPass("Pandey@0789");
         addUserPage.clickOnSaveButton();
-
+        Thread.sleep(1000);
+        softAssert.assertEquals(addUserPage.getSuccessMessage(), "Successfully Saved", "Not successfully added");
         softAssert.assertAll();
     }
 
-    @Test(priority = 1,groups = {"smoke","regression"})
+    @Test(priority = 1, groups = {"smoke", "regression"})
     public void searchTheUserCreatedAndVerifyIt() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.enterUseName("Admin");
@@ -57,12 +58,12 @@ public class UsersTest extends TestBase {
         viewSystemUsersPage.selectUserRollDropDown("ESS");
         viewSystemUsersPage.selectStatusDropDown("Enabled");
         viewSystemUsersPage.clickOnSearchButton();
-        //  softAssert.assertEquals(viewSystemUsersPage.getUserInListText(), "", "User name is not verified");
+        softAssert.assertEquals(viewSystemUsersPage.getUserTextMessage(), "", "User name is not verified");
         softAssert.assertAll();
     }
 
-    @Test(priority = 2,groups = {"regression"})
-    public void verifyThatAdminShouldDeleteTheUserSuccessFully(){
+    @Test(priority = 2, groups = {"regression"})
+    public void verifyThatAdminShouldDeleteTheUserSuccessFully() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.enterUseName("Admin");
         loginPage.enterPassword("admin123");
@@ -77,11 +78,12 @@ public class UsersTest extends TestBase {
         viewSystemUsersPage.clickOnCheckBox();
         viewSystemUsersPage.clickOnDeleteButton();
         viewSystemUsersPage.clickOnOkButtonPopUp();
-       // softAssert.assertEquals(,"","");
+        // softAssert.assertEquals(,"","");
 
     }
-    @Test(priority = 3,groups = {"regression"})
-    public void searchTheDeletedUserAndVerifyTheMessageNoRecordFound(){
+
+    @Test(priority = 3, groups = {"regression"})
+    public void searchTheDeletedUserAndVerifyTheMessageNoRecordFound() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.enterUseName("Admin");
         loginPage.enterPassword("admin123");

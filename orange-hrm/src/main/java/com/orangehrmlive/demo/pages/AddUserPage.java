@@ -38,48 +38,58 @@ public class AddUserPage extends Utility {
     @FindBy(xpath = "//input[@id='btnCancel']")
     WebElement cancelButton;
 
-    public String getAddUserText(){
-        Reporter.log("getting addUsers Text from "+addUsersText.toString()+"<br>");
+    @FindBy(xpath = "//div[@class='message success fadable']")
+    WebElement successMessage;
+
+    public String getSuccessMessage() {
+        Reporter.log("getting Success Message Text from " + successMessage.toString() + "<br>");
+        mouseHoverToElement(successMessage);
+        return getTextFromElement(successMessage);
+
+    }
+
+    public String getAddUserText() {
+        Reporter.log("getting addUsers Text from " + addUsersText.toString() + "<br>");
         return getTextFromElement(addUsersText);
     }
 
     public void selectUserRollDropDown(String rollDropDown) {
-        Reporter.log("Selecting rollDropDown "+rollDropDown+" from dropdown "+userRollDropDown.toString() + "<br>");
+        Reporter.log("Selecting rollDropDown " + rollDropDown + " from dropdown " + userRollDropDown.toString() + "<br>");
         selectByVisibleTextFromDropDown(userRollDropDown, rollDropDown);
     }
 
     public void enterEmployeeNameField(String employeeName) {
-        Reporter.log("Enter employee Name "+employeeName+ " to employee Name field "+employeeNameField.toString() + "<br>");
+        Reporter.log("Enter employee Name " + employeeName + " to employee Name field " + employeeNameField.toString() + "<br>");
         sendTextToElement(employeeNameField, employeeName);
     }
 
     public void enterUserName(String userName) {
-        Reporter.log("Enter user Name "+userName+ " to user Name field "+usernameField.toString() + "<br>");
+        Reporter.log("Enter user Name " + userName + " to user Name field " + usernameField.toString() + "<br>");
         sendTextToElement(usernameField, userName + (int) (Math.random() * 10000));
     }
 
     public void selectStatusDropDown(String status) {
-        Reporter.log("Selecting status "+status+" from dropdown "+statusDropDown.toString() + "<br>");
+        Reporter.log("Selecting status " + status + " from dropdown " + statusDropDown.toString() + "<br>");
         selectByVisibleTextFromDropDown(statusDropDown, status);
     }
 
     public void enterPasswordField(String password) {
-        Reporter.log("Enter password "+password+ " to password field "+passwordField.toString() + "<br>");
+        Reporter.log("Enter password " + password + " to password field " + passwordField.toString() + "<br>");
         sendTextToElement(passwordField, password);
     }
 
     public void enterConfirmPass(String confirmPass) {
-        Reporter.log("Enter confirmPass "+confirmPass+ " to email field "+confirmPasswordField.toString() + "<br>");
+        Reporter.log("Enter confirmPass " + confirmPass + " to email field " + confirmPasswordField.toString() + "<br>");
         sendTextToElement(confirmPasswordField, confirmPass);
     }
 
     public void clickOnSaveButton() {
-        Reporter.log("Clicking on saveButton "+ saveButton.toString()+ "<br>");
+        Reporter.log("Clicking on saveButton " + saveButton.toString() + "<br>");
         clickOnElement(saveButton);
     }
 
     public void clickOnCancelButton() {
-        Reporter.log("Clicking on cancelButton "+ cancelButton.toString()+ "<br>");
+        Reporter.log("Clicking on cancelButton " + cancelButton.toString() + "<br>");
         clickOnElement(cancelButton);
     }
 }

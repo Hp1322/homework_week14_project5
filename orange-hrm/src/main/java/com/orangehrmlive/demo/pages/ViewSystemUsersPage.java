@@ -49,6 +49,16 @@ public class ViewSystemUsersPage extends Utility {
     @FindBy(xpath = "//td[contains(text(),'No Records Found')]")
     WebElement noRecordsFound;
 
+    @FindBy(xpath = "//a[text()='pandey121']")
+    WebElement userText;
+
+    public String getUserTextMessage() {
+        Reporter.log("getting Success Message Text from " + userText.toString() + "<br>");
+        mouseHoverToElement(userText);
+        return getTextFromElement(userText);
+
+    }
+
     public void clickOnCheckBox(){
         Reporter.log("Clicking on checkBox "+ checkBox.toString()+ "<br>");
         clickOnElement(checkBox);
